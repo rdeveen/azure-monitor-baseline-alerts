@@ -269,7 +269,7 @@
                       "_deployed_by_amba": true
                     },
                     "properties": {
-                      "description": "AMBA-ALZ: Metric Alert for Frontdoor CDN Origin Latency",
+                      "description": "AMBA-ALZ: Metric Alert for Frontdoor CDN Percentage 5XX",
                       "severity": "[[parameters('severity')]",
                       "enabled": "[[parameters('enabled')]",
                       "scopes": [
