@@ -1,6 +1,5 @@
 ---
 title: Disable Policies
-geekdocCollapseSection: true
 weight: 55
 ---
 
@@ -115,9 +114,8 @@ Exclude specific resources from monitoring by using the **MonitorDisable** param
 }
 ```
 
-{{< hint type=Info >}}
-***This deployment evaluates and remediates policy definitions only if specified tag values are not present and does not apply to policies for both Service Health and Resource Health alert.***
-{{< /hint >}}
+> [!important]
+> This deployment evaluates and remediates policy definitions only if specified tag values are not present and does not apply to both Service Health and Resource Health alert policies.
 
 ### How It Works
 
@@ -144,4 +142,4 @@ The policy rule proceeds if "allOf" evaluates to true, meaning deployment contin
 
 In AMBA-ALZ virtual machine alerts are scoped to the subscription level so if the disable tag is added at the subscription level it will disables all targeted policies to all VMS.
 
-To disable the VM alerts for individual virtual machines or hybrid VMs, tag the relevant resources with the **MonitorDisable** tag. The alert queries reference resource properties in [Azure Resource Graph](https://learn.microsoft.com/en-us/azure/governance/resource-graph/overview). If a resource contains the specified tag name and value, it is included in an exclusion list, preventing alerts. This allows dynamic exclusion of resources from the VM alerts without deleting or disabling the whole alert.
+To disable the VM alerts for individual virtual machines, virtual machine scale sets or Arc-enabled servers, tag the relevant resources with the **MonitorDisable** tag. The alert queries reference resource properties in [Azure Resource Graph](https://learn.microsoft.com/en-us/azure/governance/resource-graph/overview). If a resource contains the specified tag name and value, it is included in an exclusion list, preventing alerts. This allows dynamic exclusion of resources from the VM alerts without deleting or disabling the whole alert.

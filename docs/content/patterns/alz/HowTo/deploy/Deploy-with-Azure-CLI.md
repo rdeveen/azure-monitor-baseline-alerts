@@ -5,57 +5,63 @@ weight: 40
 
 ### In this page
 
-> [Parameter Configuration](../Deploy-with-Azure-CLI#1-parameter-configuration) </br>
-> [Sample Parameter File](../Deploy-with-Azure-CLI#2-sample-parameter-file) </br>
-> [Configuring Variables for Deployment](../Deploy-with-Azure-CLI#3-configuring-variables-for-deployment) </br>
-> [Deploying AMBA-ALZ](../Deploy-with-Azure-CLI#4-deploying-amba-alz) </br>
-> [Next Steps](../Deploy-with-Azure-CLI#next-steps) </br>
+> [Prerequisites](#prerequisites) </br>
+> [Sample Parameter File](#sample-parameter-file) </br>
+> [Parameter Configuration](#parameter-configuration) </br>
+> [Configuring Variables for Deployment](#configuring-variables-for-deployment) </br>
+> [Deploying AMBA-ALZ](#deploying-amba-alz) </br>
+> [Next Steps](#next-steps) </br>
 
-{{< hint type=Important >}}
-Updating from the _**preview**_ version is not supported. If you deployed the _**preview**_ version, please follow the steps in [Moving from preview to GA](../../../HowTo/UpdateToNewReleases/Moving-from-preview-to-GA) before proceeding.
-{{< /hint >}}
+</br>
 
-## 1. Parameter Configuration
+> [!warning]
+> Updating from the _**preview**_ version is not supported. If you deployed the _**preview**_ version, please follow the steps in [Transitioning from Preview to General Availability (GA)](../../../HowTo/UpdateToNewReleases/Moving-from-preview-to-GA) before proceeding.
 
-{{< tabs "Deploy_CLI_Param1" >}}
+## Prerequisites
 
-{{% tab "Management Group (hierarchy or single)" %}}
+Deploying AMBA-ALZ requires some prerequisites and configuration to be completed upfront for both _**Management Group (hierarchy or single)**_ and _**Cloud Solution Provider (CSP) or Azure Lighthouse**_. Ensure all the necessary prerequisites, listed for the respective section in the [Prerequisites](./Introduction-to-deploying-the-ALZ-Pattern#prerequisites) page are in place.
 
-{{% include "parameterConfiguration_1.md" %}}
+## Sample Parameter File
 
-{{% /tab %}}
+{{< tabs groupid="Deploy_CLI_Param2" >}}
 
-{{% tab "Cloud Solution Provider (CSP) or Azure Lighthouse" %}}
+{{% tab title="Management Group (hierarchy or single)" %}}
 
-{{% include "parameterConfiguration_Subs_1.md" %}}
-
-{{% /tab %}}
-
-{{< /tabs >}}
-
-## 2. Sample Parameter File
-
-{{< tabs "Deploy_CLI_Param2" >}}
-
-{{% tab "Management Group (hierarchy or single)" %}}
-
-{{% include "parameterConfiguration_2.md" %}}
+  {{% include "parameterConfiguration_2" %}}
 
 {{% /tab %}}
 
-{{% tab "Cloud Solution Provider (CSP) or Azure Lighthouse" %}}
+{{% tab title="Cloud Solution Provider (CSP) or Azure Lighthouse" %}}
 
-{{% include "parameterConfiguration_Subs_2.md" %}}
+  {{% include "parameterConfiguration_Subs_2" %}}
 
 {{% /tab %}}
 
 {{< /tabs >}}
 
-## 3. Configuring Variables for Deployment
+## Parameter Configuration
 
-{{< tabs "Deploy_CLI_Variables" >}}
+{{< tabs groupid="Deploy_CLI_Param1" >}}
 
-{{% tab "Management Group (hierarchy or single)" %}}
+{{% tab title="Management Group (hierarchy or single)" %}}
+
+{{% include "parameterConfiguration_1" %}}
+
+{{% /tab %}}
+
+{{% tab title="Cloud Solution Provider (CSP) or Azure Lighthouse" %}}
+
+{{% include "parameterConfiguration_Subs_1" %}}
+
+{{% /tab %}}
+
+{{< /tabs >}}
+
+## Configuring Variables for Deployment
+
+{{< tabs groupid="Deploy_CLI_Variables" >}}
+
+{{% tab title="Management Group (hierarchy or single)" %}}
 
 The following commands are applicable to all scenarios, whether aligned with ALZ, unaligned, or managing a single management group.
 
@@ -68,17 +74,17 @@ location="Your Azure location of choice"
 pseudoRootManagementGroup="The pseudo root management group ID parenting the identity, management, and connectivity management groups"
 ```
 
-{{< hint type=Important >}}
-When executing Azure CLI commands from PowerShell, ensure that variables are prefixed with a `$` symbol.
-
-The `pseudoRootManagementGroup` variable should match the value of the `enterpriseScaleCompanyPrefix` parameter, as defined in the parameter files.
-
-The `location` variable specifies the deployment region. It is not required to deploy to multiple regions as the definitions and assignments are scoped to a management group and are not region-specific.
-{{< /hint >}}
+> [!important]
+> When executing Azure CLI commands from PowerShell, ensure that variables are prefixed with a `$` symbol.
+>
+> The `pseudoRootManagementGroup` variable should match the value of the `enterpriseScaleCompanyPrefix` parameter, as defined in the parameter files.
+>
+> The `location` variable specifies the deployment region. It is not required to deploy to multiple regions as the definitions and assignments are scoped to a management group and are not region-specific.
+>
 
 {{% /tab %}}
 
-{{% tab "Cloud Solution Provider (CSP) or Azure Lighthouse" %}}
+{{% tab title="Cloud Solution Provider (CSP) or Azure Lighthouse" %}}
 
 Open your preferred command-line tool (Windows PowerShell, Cmd, Bash, or other Unix shells) to navigate to the folder where the parameter file was downloaded. Log in to Azure using an account with at least Resource Policy Contributor access at the root of the management group hierarchy where the policies and initiatives will be created.
 
@@ -89,64 +95,62 @@ location="Your Azure location of choice"
 targetSubscription="The subscription ID where to deploy AMBA-ALZ"
 ```
 
-{{< hint type=Important >}}
-When executing Azure CLI commands from PowerShell, ensure that variables are prefixed with a `$` symbol.
-
-The `targetSubscription` variable should match the value of the `topLevelSubscriptionId` parameter, as defined in the parameter files.
-
-The `location` variable specifies the deployment region. It is not required to deploy to multiple regions as the definitions and assignments are scoped to a subscription and are not region-specific.
-{{< /hint >}}
+> [!important]
+> When executing Azure CLI commands from PowerShell, ensure that variables are prefixed with a `$` symbol.
+>
+> The `targetSubscription` variable should match the value of the `topLevelSubscriptionId` parameter, as defined in the parameter files.
+>
+> The `location` variable specifies the deployment region. It is not required to deploy to multiple regions as the definitions and assignments are scoped to a subscription and are not region-specific.
+>
 
 {{% /tab %}}
 
 {{< /tabs >}}
 
-## 4. Deploying AMBA-ALZ
+## Deploying AMBA-ALZ
 
-{{< tabs "Deploy_CLI_Deploy" >}}
+{{< tabs groupid="Deploy_CLI_Deploy" >}}
 
-{{% tab "Management Group (hierarchy or single)" %}}
+{{% tab title="Management Group (hierarchy or single)" %}}
 
 The following commands are applicable to all scenarios, whether aligned with ALZ, unaligned, or managing a single management group.
 
 Use your preferred command-line tool (Windows PowerShell, Cmd, Bash, or other Unix shells) to navigate to the folder where the parameter file was downloaded. Log in to Azure using an account with at least Resource Policy Contributor access at the root of the management group hierarchy where the policies and initiatives will be created.
 
-{{< hint type=note >}}
-For testing purposes, it is recommended to deploy in a safe environment first. When preparing for a production deployment, refer to the [Customize Policy Assignment](../Customize-Policy-Assignment) guide to deploy and enable alerts in a controlled and secure manner.
-
-If you have customized the policies as described in [How to modify individual policies](../Introduction-to-deploying-the-ALZ-Pattern#how-to-modify-individual-policies), ensure that you run the deployment command using your own repository and branch in the `--template-uri` parameter. For example:
-
-  ```bash
-  az deployment mg create --name "amba-MainDeployment" --template-uri https://raw.githubusercontent.com/***YourGithubFork***/azure-monitor-baseline-alerts/***main or branchname***/patterns/alz/alzArm.json --location $location --management-group-id $pseudoRootManagementGroup --parameters ".\patterns\alz\alzArm.param.json"
-  ```
-
-{{< /hint >}}
+> [!note]
+> For testing purposes, it is recommended to deploy in a safe environment first. When preparing for a production deployment, refer to the [Customize Policy Assignment](../Customize-Policy-Assignment) guide to deploy and enable alerts in a controlled and secure manner.
+>
+> If you have customized the policies as described in [How to modify individual policies](../Introduction-to-deploying-the-ALZ-Pattern#how-to-modify-individual-policies), ensure that you run the deployment command using your own repository and branch in the `--template-uri` parameter. For example:
+>
+  > ```bash
+  > az deployment mg create --name "amba-MainDeployment" --template-uri https://raw.githubusercontent.com/***YourGithubFork***/azure-monitor-baseline-alerts/***main or branchname***/patterns/alz/alzArm.json --location $location --management-group-id $pseudoRootManagementGroup --parameters ".\patterns\alz\alzArm.param.json"
+  > ```
+>
 
 ```bash
-az deployment mg create --name "amba-MainDeployment" --template-uri https://raw.githubusercontent.com/Azure/azure-monitor-baseline-alerts/2025-10-01/patterns/alz/alzArm.json --location $location --management-group-id $pseudoRootManagementGroup --parameters "alzArm.param.json"
+az deployment mg create --name "amba-MainDeployment" --template-uri https://raw.githubusercontent.com/Azure/azure-monitor-baseline-alerts/2026-03-06/patterns/alz/alzArm.json --location $location --management-group-id $pseudoRootManagementGroup --parameters "alzArm.param.json"
 ```
 
 {{% /tab %}}
 
-{{% tab "Cloud Solution Provider (CSP) or Azure Lighthouse" %}}
+{{% tab title="Cloud Solution Provider (CSP) or Azure Lighthouse" %}}
 
 Use your preferred command-line tool (Windows PowerShell, Cmd, Bash, or other Unix shells) to navigate to the folder where the parameter file was downloaded. Log in to Azure using an account with at least Resource Policy Contributor access at the root of the management group hierarchy where the policies and initiatives will be created.
 
-{{< hint type=note >}}
-For testing purposes, it is recommended to deploy in a safe environment first. When preparing for a production deployment, refer to the [Customize Policy Assignment](../Customize-Policy-Assignment) guide to deploy and enable alerts in a controlled and secure manner.
-
-If you have customized the policies as described in [How to modify individual policies](../Introduction-to-deploying-the-ALZ-Pattern#how-to-modify-individual-policies), ensure that you run the deployment command using your own repository and branch in the `--template-uri` parameter. For example:
-
-  ```bash
-  az account set --subscription "$targetSubscription"
-  az deployment sub create --name "amba-MainDeployment" --template-uri https://raw.githubusercontent.com/***YourGithubFork***/azure-monitor-baseline-alerts/***main or branchname***/patterns/alz4Subs/alzArm4Subs.json --location $location --parameters ".\patterns\alz4Subs\alzArm4Subs.param.json"
-  ```
-
-{{< /hint >}}
+> [!note]
+> For testing purposes, it is recommended to deploy in a safe environment first. When preparing for a production deployment, refer to the [Customize Policy Assignment](../Customize-Policy-Assignment) guide to deploy and enable alerts in a controlled and secure manner.
+>
+> If you have customized the policies as described in [How to modify individual policies](../Introduction-to-deploying-the-ALZ-Pattern#how-to-modify-individual-policies), ensure that you run the deployment command using your own repository and branch in the `--template-uri` parameter. For example:
+>
+  > ```bash
+  > az account set --subscription "$targetSubscription"
+  > az deployment sub create --name "amba-MainDeployment" --template-uri https://raw.githubusercontent.com/***YourGithubFork***/azure-monitor-baseline-alerts/***main or branchname***/patterns/alz4Subs/alzArm4Subs.json --location $location --parameters ".\patterns\alz4Subs\alzArm4Subs.param.json"
+  > ```
+>
 
 ```bash
 az account set --subscription "$targetSubscription"
-az deployment sub create --name "amba-MainDeployment" --template-uri https://raw.githubusercontent.com/Azure/azure-monitor-baseline-alerts/2025-10-01/patterns/alz4Subs/alzArm4Subs.json --location $location --parameters "alzArm4Subs.param.json"
+az deployment sub create --name "amba-MainDeployment" --template-uri https://raw.githubusercontent.com/Azure/azure-monitor-baseline-alerts/2026-03-06/patterns/alz4Subs/alzArm4Subs.json --location $location --parameters "alzArm4Subs.param.json"
 ```
 
 {{% /tab %}}

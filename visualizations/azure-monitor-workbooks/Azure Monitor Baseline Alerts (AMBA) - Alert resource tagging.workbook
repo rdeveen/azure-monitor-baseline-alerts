@@ -4,7 +4,7 @@
     {
       "type": 1,
       "content": {
-        "json": "<img width='200' src='https://raw.githubusercontent.com/Azure/azure-monitor-baseline-alerts/main/docs/static/img/amba_logo.png'>"
+        "json": "<img\r\n  width='200'\r\n  src='https://raw.githubusercontent.com/Azure/azure-monitor-baseline-alerts/main/docs/static/img/amba_logo.png'\r\n  alt=\"AMBA Logo\"\r\n  style=\"display: block; margin: 0 auto;\"\r\n>"
       },
       "customWidth": "30",
       "name": "CustomerLogo"
@@ -12,14 +12,18 @@
     {
       "type": 1,
       "content": {
-        "json": "# Azure Monitor Baseline Alerts (AMBA) - Alerts and resource tagging #"
+        "json": "<br>\r\n<br>\r\n<br>\r\n<h1 style=\"text-align: center;\">\r\nAzure Monitor Baseline Alerts (AMBA)<br>\r\nAlerts and Resource Tagging\r\n</h1>"
       },
+      "customWidth": "40",
       "name": "workbookTitle"
     },
     {
       "type": 9,
       "content": {
         "version": "KqlParameterItem/1.0",
+        "crossComponentResources": [
+          "value::all"
+        ],
         "parameters": [
           {
             "id": "63c2fcd8-71d2-49e8-ad26-a1a3675868fc",
@@ -112,8 +116,8 @@
           }
         ],
         "style": "pills",
-        "queryType": 0,
-        "resourceType": "microsoft.operationalinsights/workspaces"
+        "queryType": 1,
+        "resourceType": "microsoft.resourcegraph/resources"
       },
       "name": "Parameters"
     },

@@ -1,24 +1,25 @@
 ---
 title: Updating to release 2024-06-05
-geekdocCollapseSection: true
 weight: 98
 ---
 
 ### In this page
 
 > [Pre update actions](#pre-update-actions) </br>
-> [Update](#update)
+> [Update](#update) </br>
+> [Post update actions](#post-update-actions) </br>
 
-{{< hint type=Important >}}
-***The parameter file structure has changed to accommodate a new feature coming soon.***
-{{< /hint >}}
+</br>
+
+> [!warning]
+> ***Updating to release [2024-06-05](../../../Overview/Whats-New#2024-06-05) from previous releases involves a breaking change***. The parameter file structure has changed to accommodate a new feature coming soon. If you have a local version of the parameter file, ensure it is aligned with the new structure. It is highly recommended to thoroughly test the deployment using the new paramter file in a non-production environment before executing it in production.
 
 ## Pre update actions
 
 The parameter file structure has been updated to support an upcoming feature. Therefore, when updating from release [2024-06-05](../../../Overview/Whats-New#2024-06-05), you must align your existing parameter file structure with the new format introduced in this release.
 In particular, the new parameter file includes the following changes:
 
-1. Introduces new parameters for utilizing an existing User Assigned Managed Identity (UAMI) or creating a new one during the AMBA-ALZ deployment. These parameters are essential for the new hybrid virtual machine alert set. Ensure to review and configure the following parameters accurately:
+1. Introduces new parameters for utilizing an existing User Assigned Managed Identity (UAMI) or creating a new one during the AMBA-ALZ deployment. These parameters are essential for the new Arc-enabled server alert set. Ensure to review and configure the following parameters accurately:
 
    1. ***bringYourOwnUserAssignedManagedIdentity***: Set this parameter to **Yes** if you want to use an existing User Assigned Managed Identity (UAMI). Set it to **No** if you prefer the AMBA-ALZ deployment to create a new UAMI for you.
 
@@ -47,3 +48,8 @@ In particular, the new parameter file includes the following changes:
 ## Update
 
 Complete the activities documented in the [Steps to update to the latest release](../#steps-to-update-to-the-latest-release) page.
+
+## Post update actions
+
+> [!info]
+> **_No post-update actions_** are required.

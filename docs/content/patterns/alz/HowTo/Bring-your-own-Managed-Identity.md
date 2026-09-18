@@ -1,13 +1,13 @@
 ---
 title: Bring Your Own User Assigned Managed Identity
-geekdocCollapseSection: true
 weight: 90
 ---
 
 ### In this page
 
-> [Overview](../Bring-your-own-Managed-Identity#overview) </br>
-> [How this feature works](../Bring-your-own-Managed-Identity#how-this-feature-works) </br>
+> [Overview](#overview) </br>
+> [How this feature works](#how-this-feature-works) </br>
+> [Switching between BYO UAMI and new UAMI](#switching-between-byo-uami-and-new-uami) </br>
 
 ## Overview
 
@@ -27,11 +27,11 @@ The deployment template includes conditions that control deployment based on two
 
 A. ***Using an existing UAMI.*** In this scenario, the deployment will:
 
-{{< hint type=Important >}}
-Before deployment, ensure the existing UAMI is assigned the ***Monitoring Reader*** role at the pseudo root Management Group.
-
-If the UAMI is within the Management subscription under the Platform management group, and the Policy Assignment is at the LandingZones management group, grant the ***Managed Identity Operator*** role to the system Managed Identity of the Initiative Assignment (```Deploy-AMBA-VM``` for Virtual machine initiative, ```Deploy-AMBA-HybridVM``` for Arc-enabled Servers initiative) at the UAMI scope.
-{{< /hint >}}
+> [!warning]
+> Before deployment, ensure the existing UAMI is assigned the ***Monitoring Reader*** role at the pseudo root Management Group.
+>
+> If the UAMI is within the Management subscription under the Platform management group, and the Policy Assignment is at the LandingZones management group, grant the ***Managed Identity Operator*** role to the system Managed Identity of the Initiative Assignment (```Deploy-AMBA-VM``` for Virtual machine initiative, ```Deploy-AMBA-HybridVM``` for Arc-enabled Servers initiative) at the UAMI scope.
+>
 
 - Not deploy any UAMI
 - Not assign the _Monitoring Reader_ role
@@ -43,9 +43,8 @@ Sample parameter file configuration for this scenario:
 
 B. ***Creating a new UAMI.*** In this scenario, the deployment will:
 
-{{< hint type=Info >}}
-When a new UAMI is created by the deployment template, the ***Monitoring Reader*** role is <ins>*automatically assigned at the pseudo root Management Group level during deployment*</ins>.
-{{< /hint >}}
+> [!note]
+> When a new UAMI is created by the deployment template, the ***Monitoring Reader*** role is <ins>*automatically assigned at the pseudo root Management Group level during deployment*</ins>.
 
 - Deploy a new UAMI
 - Assign the *Monitoring Reader* role
@@ -60,19 +59,18 @@ Sample parameter file configuration for this scenario:
 This feature is currently used in log-search based alerts which are mostly included in the following policy initiatives:
 
 - Deploy Azure Monitor Baseline Alerts for Azure Virtual Machines
-- Deploy Azure Monitor Baseline Alerts for Hybrid Virtual Machines
+- Deploy Azure Monitor Baseline Alerts for Arc-enabled server
 - Deploy Azure Monitor Baseline Alerts for Management
 - Deploy Azure Monitor Baseline Alerts for Web
 
 ![Policy Initiatives using UAMI for ARG queries](../../media/Initiatives-Using-UAMI.png)
 
-{{< hint type=Info >}}
-This feature could be expanded to other alerts in the future.
-{{< /hint >}}
+> [!note]
+> This feature could be expanded to other alerts in the future.
 
-### Switching between BYO UAMI and new UAMI
+## Switching between BYO UAMI and new UAMI
 
-The [conditional deployment behavior](../Bring-your-own-Managed-Identity#conditional-deployment-behavior) allows Brownfield customers to switch between a newly created UAMI and an existing one. To switch:
+The [conditional deployment behavior](#conditional-deployment-behavior) allows Brownfield customers to switch between a newly created UAMI and an existing one. To switch:
 
 - Update the parameter file values to match one of the discussed scenarios
 - Redeploy the AMBA-ALZ pattern

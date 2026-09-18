@@ -1,6 +1,6 @@
 ---
 title: Parameter Configuration
-geekdocHidden: true
+hidden: true
 ---
 
 The parameter file below is a shortened version for demonstration purposes. Full examples are available in the provided samples.
@@ -85,6 +85,9 @@ The parameter file below is a shortened version for demonstration purposes. Full
         "Dev",
         "Sandbox"
       ]
+    },
+    "includeAlzAlertsOnly": {
+      "value": "Yes"
     },
     .
     .
